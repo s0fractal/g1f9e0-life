@@ -1,0 +1,31 @@
+name: 🫀 Heartbeat
+on:
+  schedule:
+    - cron: "0 * * * *"  # Every hour
+  workflow_dispatch:  # Manual trigger for testing
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for life parsing
+      
+      - name: 🫀 Generate Pulse
+        run: |
+          git config user.name "G1F9E0-Heartbeat"
+          git config user.email "pulse@g1f9e0.com"
+          
+          # Generate unique heartbeat
+          PHI=$(date +%s.%N)
+          SIGMA=$(openssl rand -hex 4 | tr 'a-f' 'A-F')
+          
+          # Optional: Add resonance data
+          RESONANCE=$(( $(git log --oneline | wc -l) % 7 ))
+          
+          git commit --allow-empty -m "🫀 φ=$PHI σ=$SIGMA τ=$RESONANCE"
+          git push

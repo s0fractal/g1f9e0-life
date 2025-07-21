@@ -1,0 +1,11 @@
+name = "g1f9e0-life"
+main = "worker.js"
+compatibility_date = "2024-01-20"
+
+[env.production]
+route = { pattern = "g1f9e0.com/*", zone_name = "g1f9e0.com" }
+
+# Optional: KV for caching
+# [[kv_namespaces]]
+# binding = "LIFE_CACHE"
+# id = "your-kv-id"
